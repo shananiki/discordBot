@@ -1,5 +1,7 @@
+from io import BytesIO
 import discord
-
+from ImageLogger import *
+from PIL import Image
 
 class MyClient(discord.Client):
     async def on_ready(self):
@@ -17,13 +19,20 @@ class MyClient(discord.Client):
             return
 
 
-        if channel.name == 'Allgemein':
+        if channel.name == 'spam':
             if message.attachments:
                 for attachment in message.attachments:
-                    if any(attachment.filename.lower().endswith(ext) for ext in ['.png', '.jpg', '.jpeg', '.gif']):
-                        await attachment.save(attachment.filename)
-                        print(f'Saved image: {attachment.filename}')
-                        await client.get_channel(channel_id).send("I got that picture saved!!!")
+                    if any(attachment.filename.lower().endswith(ext) for ext in ['.png', '.jpg', '.jpeg']):
+                        dest_extension = attachment.filename.split('.')[-1]
+                        dest_filename = il.savePicture()
+
+                        # shady file conversion
+                        image_data = await attachment.read()
+                        image = Image.open(BytesIO(image_data))
+
+                        image.save("images/" + str("{0}.{1}".format(dest_filename, "png")))
+
+                        # await client.get_channel(channel_id).send("I got that picture saved!!!")
 
 
         if message.content.startswith('!hello'):
@@ -36,6 +45,6 @@ intents.message_content = True
 
 with open("token.txt") as f:
     token = f.read()
-
+il = ImageLogger()
 client = MyClient(intents=intents)
 client.run(token=token)
