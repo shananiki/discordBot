@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Image Viewer</title>
+  <style>
+	body {
+		background-color: #00001c;
+		cursor: crosshair;
+	}
+  
+    img {
+      max-width: 100%;
+      max-height: 80vh;
+      display: block;
+      margin: 0 auto;
+    }
+	
+	.direction-button {
+		background:linear-gradient(to bottom, #ff66f5 5%, #d600bd 100%);
+		background-color:#ff66f5;
+		border-radius:6px;
+		border:1px solid #960091;
+		display:inline-block;
+		cursor:pointer;
+		color:#ffffff;
+		font-family:Arial;
+		font-size:17px;
+		padding:10px 35px;
+		text-decoration:none;
+		text-shadow:0px 1px 0px #a12a99;
+	}
+	
+	.direction-button:hover {
+		background:linear-gradient(to bottom, #d600bd 5%, #ff66f5 100%);
+		background-color:#d600bd;
+		box-shadow: 0 5px 15px rgba(145, 92, 182, .4);
+	}
+	
+	.direction-button:active {
+		position:relative;
+		top:1px;
+	}
+	
+
+  </style>
+</head>
+<body onload="onLoad();">
+	<center>
+		<a style="color: white;">Index: <a><a id="index" style="color: white;"></a>
+	</center>
+  <img id="image" src="" alt="Image">
+  <center>
+  <br>
+  <button class="direction-button" id="previousButton"><=</button>
+  <button class="direction-button" id="nextButton">=></button>
+  </center>
+  <script>
+    var currentIndex = 0;
+    var imageElement = document.getElementById("image");
+	var previousButton = document.getElementById("previousButton");
+    var nextButton = document.getElementById("nextButton");
+	var index = document.getElementById("index");
+  
+	function onLoad(){
+		var url = window.location.href;
+		var index = document.getElementById("index");
+		currentIndex = Number(url.split(".html?n=")[1]);
+		index.innerText = currentIndex;
+		updatePage();
+	}
+  
+	function changeURL(){
+		var url = window.location.href;
+		var url2 = url.split(".html?n=")[0] + ".html?n=" + currentIndex;
+		
+		var newURL = {
+			Title: "disc0rd",
+			Url: url2
+		};
+		window.history.replaceState(newURL, newURL.Title, newURL.Url);
+	}
+  
+    // Array of image URLs
+    var imageUrls = [
+      "http://82.165.55.139/images/"
+      // Add more URLs as needed
+    ];
+    
+	
+	function updatePage(){
+		index.innerText = currentIndex;
+		imageElement.src = "http://82.165.55.139/images/" + currentIndex + ".png";
+		changeURL();
+	}
+	
+    // Display the initial image
+    imageElement.src = "http://82.165.55.139/images/" + currentIndex + ".png";
+    
+    // Handle key press events
+    document.addEventListener("keydown", function(event) {
+      if (event.keyCode === 37) { // Left arrow key
+        currentIndex = (currentIndex === 0) ? imageUrls.length - 1 : currentIndex - 1;
+      } else if (event.keyCode === 39) { // Right arrow key
+        currentIndex = (currentIndex === imageUrls.length - 1) ? 0 : currentIndex + 1;
+      }
+	  updatePage();
+    });
+	// Handle click events on the previous button
+	previousButton.addEventListener("click", function() {
+		currentIndex = (currentIndex === 0) ? imageUrls.length - 1 : currentIndex - 1;
+		updatePage();
+	});
+    
+    // Handle click events on the next button
+	nextButton.addEventListener("click", function() {
+		currentIndex = (currentIndex === imageUrls.length - 1) ? 0 : currentIndex + 1;
+		updatePage();
+    });
+	
+	
+	
+	</script>
+</body>
+</html>
