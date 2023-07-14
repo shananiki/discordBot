@@ -11,6 +11,8 @@ sudo apt-get install apache2\
 sudo apt-get install php7.4\
 sudo apt-get install php7.4-sqlite
 
+
+I recommend using (DB Browser for SQLite)[https://sqlitebrowser.org/]
 Use the SQL file to create a database ".db" file called images.db.
 
 
