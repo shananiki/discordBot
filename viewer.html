@@ -3,6 +3,22 @@
 <head>
   <title>Discord pr0gramm</title>
   <style>
+	@font-face {
+		font-family: 'basiic';
+		src: url('basiic.otf') format('truetype');
+	}
+
+	@font-face {
+		font-family: 'TFTWindows';
+		src: url('TFTWindows.ttf') format('truetype');
+	}
+	
+	.myIndex {
+		font-family: "basiic";
+		color: white;
+		font-size: 18px;
+	}
+  
 	body {
 		background-color: #00001c;
 		cursor: crosshair;
@@ -24,6 +40,7 @@
 	.content {
 		max-width: 500px;
 		max-height: 300px; 
+		min-height: 299px;
 	}
 	
 	
@@ -53,12 +70,20 @@
 		top:1px;
 	}
 	
+	#buttonContainer {
+		position: fixed;
+		bottom: 0;
+		left: 50%;
+		transform: translateX(-50%);
+		padding-bottom: 100px;
+	}
+	
 
   </style>
 </head>
 <body onload="onLoad();">
 	<center>
-		<a style="color: white;">Index: <a><a id="index" style="color: white;"></a>
+		<a class="myIndex">Index: <a><a class="myIndex" id="index"></a>
 	</center>
 	<div id="content">
 		<!-- The image and video elements will be dynamically enabled or hidden -->
@@ -69,8 +94,10 @@
 
   <center>
   <br>
-  <button class="direction-button" id="previousButton"><=</button>
-  <button class="direction-button" id="nextButton">=></button>
+	<div id="buttonContainer">
+		<button class="direction-button" id="previousButton"><=</button>
+		<button class="direction-button" id="nextButton">=></button>
+	</div>
   </center>
   <script>
     var currentIndex = Number(window.location.href.split(".html?n=")[1]);
@@ -162,16 +189,18 @@
 
 					// Check the value of "dataExtension"
 					if (dataExtension === '.png') {
-					// If the extension is '.png', enable the image element
+						// If the extension is '.png', enable the image element
 						videoElement.style.display = 'none';
+						videoElement.src = "";
 						imageElement.src = data.dataURL;
 						imageElement.style.display = 'block';
-					} else if (dataExtension === '.mp4') {
-					// If the extension is '.mp4', hide the image element and enable the video element
+					}else{
 						imageElement.style.display = 'none';
+						imageElement.src = "";
 						videoElement.src = data.dataURL;
 						videoElement.style.display = 'block';
 						videoElement.setAttribute('controls', 'controls');
+						videoElement.setAttribute('autoplay', '');
 					}
 				}else{
 					index.innerText = "- OVER 9000!!!!!!!!!";
