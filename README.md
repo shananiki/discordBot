@@ -4,7 +4,7 @@ In memory of the old "pr0gramm".
 
 ## What can it do by now?
 
-For now only .jpg, .png and .jpeg file extensions are supported.
+For now only .mp4, .webm, .jpg, .png and .jpeg file extensions are supported.
 
 ## Preparation VPS
 sudo apt-get install apache2\
