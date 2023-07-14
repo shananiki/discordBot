@@ -12,7 +12,7 @@ sudo apt-get install php7.4\
 sudo apt-get install php7.4-sqlite
 
 
-I recommend using [DB Browser for SQLite](https://sqlitebrowser.org/)
-Use the SQL file to create a database ".db" file called images.db.
+I recommend using [DB Browser for SQLite](https://sqlitebrowser.org/)\
+Use the [SQL file](https://github.com/shananiki/discordBot/blob/main/createDB.sql) to create a database ".db" file called images.db.
 
 
