@@ -6,3 +6,7 @@ In memory of the old "pr0gramm".
 
 For now only .jpg, .png and .jpeg file extensions are supported.
 
+## Preparation VPS
+sudo apt-get install apache2
+sudo apt-get install php7.4
+sudo apt-get install php7.4-sqlite
