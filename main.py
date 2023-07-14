@@ -54,7 +54,7 @@ with open("token.txt") as f:
     token = f.read()
 il = ImageLogger()
 dh = DatabaseHandler()
-dh.setServerURL("http://82.165.55.139/images/")
+dh.setServerURL("{YOURSERVERURL}")
 dh.setDBFile("images.db")
 client = MyClient(intents=intents)
 client.run(token=token)
