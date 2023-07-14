@@ -5,7 +5,7 @@ class DatabaseHandler:
 
     def __init__(self):
         self.db_file = "images.db"
-        self.serverURL = "http://82.165.55.139/images/"
+        self.serverURL = "{YOURSERVERURL}"
 
     def setDBFile(self, file):
         self.db_file = file
