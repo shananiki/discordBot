@@ -11,8 +11,9 @@ sudo apt-get install apache2\
 sudo apt-get install php7.4\
 sudo apt-get install php7.4-sqlite
 
-
+~~##deprecated~~\
 I recommend using [DB Browser for SQLite](https://sqlitebrowser.org/)\
 Use the [SQL file](https://github.com/shananiki/discordBot/blob/main/createDB.sql) to create a database ".db" file called images.db.
 
-
+## New
+Running the python script will now check wether all tables exist! :)
